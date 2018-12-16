@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  session:
+    store-type: redis
+    timeout: 120
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: cloud-config
+
+server:
+  port: 2000
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+zuul:
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
+    max-total-connections: 400
+  add-proxy-headers: true
+  semaphore:
+    max-semaphores: 2000
+  routes:
+    cloud-auth: /api/auth/**
+    cloud-basic: /api/basic/**
+    cloud-duty: /api/duty/**
+    cloud-business: /api/business/**
+#巨坑 zuul会忽略敏感信息不传递到后面的服务 认证服务器是基于HttpBasic认证的缺少Authorization会
+#出现 Full authentication is required to access this resource
+#http://www.shangyang.me/2017/06/01/spring-cloud-oauth2-zuul-potholes/
+  sensitive-headers:
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:3000/oauth/token
+      userAuthorizationUri: http://localhost:3000/oauth/authorize
+      clientId: ui
+      clientSecret: password
+    resource:
+      preferTokenInfo: false
+      user-info-uri: http://localhost:3000/user

@@ -1,0 +1,47 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'net.myspring.wangzm'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+jar {
+	baseName = 'cloud-common'
+	version = '1.0.0-RELEASE'
+}
+
+repositories {
+	maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.0'
+	compile group: 'io.springside', name: 'springside-utils', version: '5.0.0-RC1'
+	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	compile 'com.fasterxml.jackson.core:jackson-databind'
+	compile 'com.google.guava:guava:19.0'
+	//应用了JPA的包 其他不需要使用jpa的需要去除springboot的自动配置
+	//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+	compile "org.apache.commons:commons-lang3:3.4"
+	compile group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

@@ -1,0 +1,9 @@
+include 'cloud-config'
+include 'cloud-gateway'
+include 'cloud-eureka'
+include 'cloud-auth'
+include 'cloud-basic'
+include 'cloud-duty'
+/*include 'cloud-business'*/
+include 'cloud-common'
+include 'summer-uaa'

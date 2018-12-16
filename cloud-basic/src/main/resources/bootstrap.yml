@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: cloud-basic
+  session:
+    store-type: redis
+    timeout: 120
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: cloud-config
+    stream:
+      defaultBinder: defaultRabbit
+      bindings:
+        userInput:
+          destination: useReturnDestination
+          group: userTest     # 具体分组 对应 MQ 是 队列名称 并且持久化队列
+        userOutput:
+          destination: userDestination
+          contentType: text/plain
+        dlxInput:
+          destination: DLX
+          group: dlx     # 具体分组 对应 MQ 是 队列名称 并且持久化队列
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+             rabbitmq:
+              host: localhost
+              username: myuser
+              password: mypass
+
+server:
+  port: 4000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:3000/user

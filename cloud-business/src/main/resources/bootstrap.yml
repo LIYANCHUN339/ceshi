@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: cloud-business
+
+server:
+  port: 6000

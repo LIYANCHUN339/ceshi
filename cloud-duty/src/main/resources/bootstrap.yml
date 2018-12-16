@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: cloud-duty
+  session:
+    store-type: redis
+    timeout: 120
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: cloud-config
+    stream:
+      defaultBinder: defaultRabbit
+      bindings:
+        dutyUserOutput:
+          destination: useReturnDestination
+          contentType: text/plain
+        dutyUserInput:
+          destination: userDestination
+          group: user
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+             rabbitmq:
+              host: 192.168.33.200
+              username: myuser
+              password: mypass
+
+server:
+  port: 5000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:3000/user
