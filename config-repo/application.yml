@@ -3,7 +3,7 @@ spring:
     basic:
       url: jdbc:mysql://localhost/db_cloud_basic
       username: root
-      password: 123456
+      password: password
       driver-class-name: com.mysql.jdbc.Driver
   redis:
     oauth2:
