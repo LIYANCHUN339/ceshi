@@ -1,7 +1,7 @@
 spring:
   datasource:
     basic:
-      url: jdbc:mysql://localhost/db_cloud_basic
+      url: jdbc:mysql://localhost/db_cloud_basic?serverTimezone=GMT%2B8
       username: root
       password: password
       driver-class-name: com.mysql.jdbc.Driver
