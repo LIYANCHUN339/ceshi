@@ -1,18 +1,10 @@
 spring:
   datasource:
     basic:
-      url: jdbc:mysql://192.168.33.206:3326/db_cloud_basic
+      url: jdbc:mysql://localhost/db_cloud_basic
       username: root
-      password: lvyuebbk@123456
+      password: password
       driver-class-name: com.mysql.jdbc.Driver
-  redis:
-    oauth2:
-      host: 192.168.33.206
-      port: 6379
-      database: 11
-      password: lvyue@123456
-      max-idle: 100
-      max-total: 200
   jpa:
     properties:
       hibernate:

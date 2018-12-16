@@ -5,11 +5,11 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/wangzhangmao/spring-boot-cloud
+          uri: https://github.com/LIYANCHUN339/spring-boot-cloud
           search-paths: config-repo
           timeout: 300
-          username: wangzhangmao
-          password: password
+          username: LIYANCHUN339
+          password: li512918
 server:
   port: 9000
 
